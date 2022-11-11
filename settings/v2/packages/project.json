@@ -1,0 +1,14 @@
+{
+  "general": {
+    "designResolution": {
+      "width": 414,
+      "height": 736
+    }
+  },
+  "layer": [
+    {
+      "name": "Knife",
+      "value": 524288
+    }
+  ]
+}
