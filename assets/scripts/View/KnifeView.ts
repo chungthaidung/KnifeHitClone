@@ -34,21 +34,21 @@ export class KnifeView extends MvcBehavior {
     }
 
     onBeginContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        if (this.state == STATE.STICK)
-        {
-            console.log('LOSE');
-            this.getApp().controller.gameController.restartLevel();
-            director.loadScene("gameplay");
-        }
-        else if (this.state == STATE.FLY && otherCollider.node.name.match('Wood')){
-            this.state = STATE.STICK;
-            this.getApp().controller.gameController.onKnifeSticked()
-            this.node.destroy();
-
+        if (this.node.isValid){
+            if (this.state == STATE.STICK && otherCollider.tag == 1)
+            {
+                console.log('LOSE');
+                director.loadScene("mainmenu");
+            }
+            else if (this.state == STATE.FLY && otherCollider.tag == 0.5){
+                this.state = STATE.STICK;
+                this.getApp().controller.gameController.onKnifeSticked();
+                // this.node.removeFromParent();
+            }
         }
     }
     update(deltaTime: number) {
-        if (this.node.active){
+        if (this.node.isValid){
             if (this.state ==STATE.STICK)
             {
                 // let newPosition = new Vec3(this.wood.radius * Math.cos((this.wood.node.eulerAngles.z + this.angle) * 3.14/180),this.wood.radius * Math.sin((this.wood.node.eulerAngles.z + this.angle) * 3.14/180)+ this.wood.node.position.y, 0);

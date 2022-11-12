@@ -6,6 +6,7 @@ const { ccclass, property } = _decorator;
 export class PlayerModel extends MvcBehavior {
     @property({type:CCInteger})
     private knives;
+    private level = 0;
     public removeKnife(remove)
     {
         this.knives -= remove;
